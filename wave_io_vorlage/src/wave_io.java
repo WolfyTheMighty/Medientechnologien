@@ -60,9 +60,12 @@ public class wave_io
 		try {
 
 			// 2e Downsampling
-			for (int i=0; i < samples;i++) {
-				
-				// ********* ToDo *************** 	
+//todo
+				numFrames /=2;
+				sampleRate /= 2;
+				for (int i=0; i < samples/2;i++) {
+					System.out.println(samples);
+					readWavFile.sound[i] = readWavFile.sound[i*2];
 				
 			}
 			

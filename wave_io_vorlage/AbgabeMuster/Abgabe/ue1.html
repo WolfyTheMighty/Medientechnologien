@@ -9,49 +9,74 @@
                 a:hover {color:#FF3333; text-decoration:none; font-weight:normal; font-size:10pt;}
         //-->
 </style>
+    <
 </head>
 
 <body>
 
 <iframe src="oben.html" width="800" height="120" name="IFrame3" id="IFrame3" scrolling="no" frameborder="0">
-         <p>Ihr Browser kann leider keine eingebe5tteten Frames anzeigen:Sie k&ouml;nnen die eingebettete Seite &uuml;ber den
+         <p>Ihr Browser kann leider keine eingebetteten Frames anzeigen:Sie k&ouml;nnen die eingebettete Seite &uuml;ber den
          folgenden.</p>
 </iframe>
 
 <h2>Uebung 1</h2>
-<br><h3>Aufgabe 1 - 1.1</h3>
+<br><h3>Aufgabe 1</h3>
+<p>a)</p>
+<p>Musik und Sprachaufnahme</p>
+<audio controls><source src="./rsc/musik_20_cut.wav" type="audio/wav"></audio>
+<audio controls><source src="./rsc/sprache_20_cut.wav" type="audio/wav"></audio>
 
-<br><p>Musikaufnahme</p>
-<audio controls><source src="./audio/musik_mono.wav" type="audio/wav"></audio>
-<p>Bescheibung</p>
-<p>Loesung</p>
-<p>Headerausgabe </p>
+
+<p>b)</p>
+
+
+
+<p>c)</p>
+
+<p>Headerausgabe musik_20_cut.wav</p>
 <p>   Channels: 2  --Anzahl der audiokanaele in dem Fall stereo</p>
-<p>  Frames: 218196</p>
-<p>  Sample Rate: 44100</p>
-<p>  Valid Bits: 16</p>
-<p>  Bytes per sample: 2</p>
+<p>  Frames: 220500  -- Anzahl der Frames</p>
+<p>  Sample Rate: 44100 --Abtastfrequenz</p>
+<p>  Valid Bits: 16  --Speicher für einen Abtast Wert</p>
+<p>  Bytes per sample: 2  -- Speicher für einen Abtastpunkt hier 2x8 Bit</p>
 <p> Bitrate = Abtastrate * Auflösung * Anz. Kanaele</p>
-<p>  44100 * 16 * 2 = 1411200</p>
+<!-----------------TODO---------------->
 
-<br><h3>Aufgabe 1 - 1.2</h3>
-<p>Loesung</p>
+<p>d)</p>
+<p>musik_20_cut.wav:  44100 * 16 * 2 = 1411200 Bit/s</p>
+<p>musik_20_cut.wav:  44100 * 16 * 2 = 1411200 Bit/s</p> <!-----------------TODO---------------->
 
-<br><h3>Aufgabe 2 - 2.1</h3>
-<br><p>Rauschen</p>
-<audio controls><source src="./audio/rauschen.wav" type="audio/wav"></audio>
-<p>Bescheibung</p>
-<p>Loesung</p>
+<br><h3>Aufgabe 2 </h3>
 
-<br><h3>Aufgabe 2 - b)</h3>
-<p>Loesung</p>
-14449, -1606, -12665, 15679, -4756, -10394, 16305, -7723, -7723, 16305, -10394, -4756, 15679, -12665, -1606, 14449, -14449, 1606, 12665, -15679, 4756, 10394, -16305, 7723, 7723, -16305, 10394, 4756, -15679, 12665, 1606, -14449,
-32 Werte / unterschiedliche =
-<br><h3>Aufgabe 2 - 2.3</h3>
-<p>Loesung</p>
 
-<br><h3>Aufgabe 3 - 3.1</h3>
-<p>Loesung</p>
+<p>a)</p>
+Eine Periode für sine_hi_20.wav:
+<br>
+14449, -1606, -12665, 15679, -4756, -10394, 16305, -7723, -7723, 16305, -10394, -4756, 15679, -12665, -1606, 14449, -14449, 1606, 12665, -15679, 4756, 10394, -16305, 7723, 7723, -16305, 10394, 4756, -15679, 12665, 1606, -14449
+<br>
 
+<br>
+32 Werte / 8 unterschiedliche = 4 Abtastwerte pro Schwingung ==> Frequenz = 16kHz/4 = 4kHz
+<!-----------------TODO---------------->
+
+<p>b)</p>
+<p>c)</p>
+"Wenn ein kontinuierliches Signal mit einer oberen Grenzfrequenz von fmax mit einer Abtastrate von mehr als 2*fmax abgetastet wird, kann man das Ursprungssignal ohne Informationsverlust aus dem abgetasteten Signal rekonstruieren" Malaka, R., Butz A. & HuÃŸmann, H. (2009). Medieninformatik: Eine EinfÃ¼hrung (2. Aufl.). Deutschland: Pearson Studium, S.63
+<br>
+Die Abtastrate muss doppelt sp hoch oder gleich sein wie die maximale Frequenz der Schwingung (fa >= 2*fmax)
+<img src="wave_io_vorlage/rsc/Capture.PNG">
+
+<p>d)</p>
+Bei einer Soundkarte wird als Vorbehandlung ein Tiefpassfilter eingesetzt, der alle Frequenzen oberhalb von fa/2 herausfiltert.
+
+<p>e)</p>
+<p>f)</p>
+<p>g)</p>
+
+<br><h3>Aufgabe 2 </h3>
+<p>a)</p>
+16 Bit Aufflösung: 2^16 = 65536 Amplitudenwerte
+<br>
+8 Bit Aufflösung: 2^8 = 256 Amplitudenwerte
 </body>
 </html>
