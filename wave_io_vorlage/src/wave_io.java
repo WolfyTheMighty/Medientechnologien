@@ -37,8 +37,8 @@ public class wave_io
 		
 			// 2a Samples schreiben	
 			for (int i=0; i < samples;i++) {
-			
-				// ********* ToDo *************** 	
+
+				System.out.println(readWavFile.sound[i]);
 				
 			}
 		    
