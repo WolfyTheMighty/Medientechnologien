@@ -60,21 +60,24 @@ public class wave_io
 		try {
 
 			// 2e Downsampling
-//todo
-				numFrames /=2;
-				sampleRate /= 2;
-				for (int i=0; i < samples/2;i++) {
-					System.out.println(samples);
-					readWavFile.sound[i] = readWavFile.sound[i*2];
-				
-			}
+
+//				numFrames /=2;
+//				sampleRate /= 2;
+//				for (int i=0; i < samples/2;i++) {
+//					System.out.println(samples);
+//					readWavFile.sound[i] = readWavFile.sound[i*2];
+//
+//			}
 			
  			// 3b Bitreduzierung
-			int reduced_bits = 1;
-			for (int i=0; i < samples;i++) {
-			
-				// ********* ToDo *************** 	
-				
+			int reduced_bits = 16;
+
+
+				for (int i=0; i < samples;i++) {
+					readWavFile.sound[i]/= Math.pow(2, reduced_bits);
+					readWavFile.sound[i]*= Math.pow(2, reduced_bits);
+
+
 			}
 			
  			// 3e Bitreduzierung Differenz
