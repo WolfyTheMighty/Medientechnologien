@@ -28,7 +28,9 @@
 
 
 <p>b)</p>
+Bei Sprachübertragung entstanden 8khz bei der Abwägung von Qulität und bandbreite.
 
+Da der Mensch Frequenzen bis ca. 20kHz wahrnehmen kann, werden High-quality Audioaufnahmen mit 44.1kHz bzw. 48kHz abgetastet auch hier wegen dem Abtasttheorem. Hohe Abtastraten erhÃ¶hen einerseits die maximal darstellbare Frequenz und erleichtern  die digitale Bearbeitung des Audiomaterials.
 
 
 <p>c)</p>
@@ -57,6 +59,12 @@
 
 
 <p>a)</p>
+for (int i=0; i < samples;i++) {<br>
+
+System.out.println(readWavFile.sound[i]);<br>
+
+}<br>
+<br>
 Eine Periode für sine_hi_20.wav:
 <br>
 14449, -1606, -12665, 15679, -4756, -10394, 16305, -7723, -7723, 16305, -10394, -4756, 15679, -12665, -1606, 14449, -14449, 1606, 12665, -15679, 4756, 10394, -16305, 7723, 7723, -16305, 10394, 4756, -15679, 12665, 1606, -14449
@@ -71,13 +79,14 @@ Eine Periode für sine_hi_20.wav:
 <p>16 Werte / 8 unterschiedliche = 2 Abtastwerte pro Schwingung ==> Frequenz = 8kHz/4 = 2kHz</p>
 
 <p>b)</p>
+
 <p>sine_hi02.wav</p>
 <img src="pics/gram_EH0CjqYOC4.png">
 <p>sine_lo03.wav</p>
 <img src="pics/gram_ep8UVednTC.png">
 
 <p>c)</p>
-"Wenn ein kontinuierliches Signal mit einer oberen Grenzfrequenz von fmax mit einer Abtastrate von mehr als 2*fmax abgetastet wird, kann man das Ursprungssignal ohne Informationsverlust aus dem abgetasteten Signal rekonstruieren" Malaka, R., Butz A. & HuÃŸmann, H. (2009). Medieninformatik: Eine EinfÃ¼hrung (2. Aufl.). Deutschland: Pearson Studium, S.63
+Wenn ein kontinuierliches Signal mit einer oberen Grenzfrequenz von fmax mit einer Abtastrate von mehr als 2*fmax abgetastet wird, kann man das Ursprungssignal ohne Informationsverlust aus dem abgetasteten Signal rekonstruieren
 <br>
 Die Abtastrate muss doppelt sp hoch oder gleich sein wie die maximale Frequenz der Schwingung (fa >= 2*fmax)
 <img src="pics/Capture.PNG">
@@ -86,11 +95,18 @@ Die Abtastrate muss doppelt sp hoch oder gleich sein wie die maximale Frequenz d
 Bei einer Soundkarte wird als Vorbehandlung ein Tiefpassfilter eingesetzt, der alle Frequenzen oberhalb von fa/2 herausfiltert.
 
 <p>e)</p>
+numFrames /=2; <br>
+sampleRate /= 2;<br>
+for (int i=0; i < samples/2;i++) {<br>
+System.out.println(samples);<br>
+readWavFile.sound[i] = readWavFile.sound[i*2];<br>
+}
+<br>
 <p>f)</p>
-<audio controls><source src="audio/sine_hi02.wav" type="audio/wav"></audio>sine_hi02.wav
-<audio controls><source src="audio/sine_hi02_ds.wav" type="audio/wav"></audio>sine_hi02_ds.wav
-<audio controls><source src="audio/sine_lo03.wav" type="audio/wav"></audio>sine_lo03.wav
-<audio controls><source src="audio/sine_lo03_ds.wav" type="audio/wav"></audio>sine_lo03_ds.wav
+<audio controls><source src="audio/sine_hi02.wav" type="audio/wav"></audio>sine_hi02.wav mit 5500hz
+<audio controls><source src="audio/sine_hi02_ds.wav" type="audio/wav"></audio>sine_hi02_ds.wav mit 2500hz
+<audio controls><source src="audio/sine_lo03.wav" type="audio/wav"></audio>sine_lo03.wav mit 3000hz
+<audio controls><source src="audio/sine_lo03_ds.wav" type="audio/wav"></audio>sine_lo03_ds.wav mit 3000hz
 
 <p>g)</p>
 <audio controls><source src="audio/sprache_20_cut_ds.wav" type="audio/wav"></audio>sprache downsampled
@@ -101,9 +117,21 @@ Bei einer Soundkarte wird als Vorbehandlung ein Tiefpassfilter eingesetzt, der a
 <br>
 8 Bit Aufflösung: 2^8 = 256 Amplitudenwerte
 
-<p>a)</p>
-<audio controls><source src="audio/sprache_20_cut_br.wav" type="audio/wav"></audio>sprache bitreduziert
-<audio controls><source src="audio/musik_20_cut_br.wav" type="audio/wav"></audio>musik bitreduziert
-
+<p>b)</p>
+int reduced_bits = 1;<br>
+for (int i=0; i < samples;i++) {<br>
+readWavFile.sound[i]/= Math.pow(2, reduced_bits);<br>
+readWavFile.sound[i]*= Math.pow(2, reduced_bits);<br>
+}<br>
+<p>c)</p>
+Durch die Bitreduzierung werden Informationen aus der Ton Datei entfernt daher je mehr Bits entfernt werden desto höher wird die Unverständlichkeit der Aufnahme
+<audio controls><source src="audio/sprache_20_cut_br.wav" type="audio/wav"></audio>sprache bitreduziert um 1 bit - leichtes Rauschen
+<audio controls><source src="audio/sprache_20_cut_10br.wav" type="audio/wav"></audio>sprache bitreduziert um 10 bit - deutliches Rauschen
+<audio controls><source src="audio/sprache_20_cut_12br.wav" type="audio/wav"></audio>sprache bitreduziert um 12 bit - fast unverständlich
+<audio controls><source src="audio/musik_20_cut_10br.wav" type="audio/wav"></audio>musik bitreduziert um 12 bit - deutliches Rauschen
+<audio controls><source src="audio/musik_20_cut_12br.wav" type="audio/wav"></audio>musik bitreduziert um 12 bit - fast unverständlich
+<p>d)</p>
+Das Quantisierungsgeräusch entsteht bei der umwandlung analoger Signale zu digitalen (micht alle werte können abgebildet werden)
+<p>e)</p>
 </body>
 </html>
